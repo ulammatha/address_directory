@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <% if @addresses.present? %>
   <h1>Listing Addresses</h1>
   <table class="table table-bordered">
@@ -40,6 +39,5 @@
 <div class="jumbotron">
   <h4>No addresses found</h4>
 </div>
-<%= link_to 'Add New Address', new_address_path, class: "btn btn-primary btn-lg"%>
 <% end %>
-
+<%= link_to 'Add New Address', new_address_path, class: "btn btn-primary btn-lg"%>

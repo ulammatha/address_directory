@@ -1,6 +1,7 @@
 class AddressesController < ApplicationController
   before_action :authenticate_user!, only:[:index, :show, :new,:create, :edit, :update, :destroy]
   before_action :set_address, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :json
 
   def index
     @addresses = current_user.addresses.all
@@ -19,35 +20,46 @@ class AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
 
-    respond_to do |format|
-      if @address.save
-        format.html { redirect_to @address, notice: 'Address was successfully created.' }
-        format.json { render :show, status: :created, location: @address }
-      else
-        format.html { render :new }
-        format.json { render json: @address.errors, status: :unprocessable_entity }
-      end
+    if @address.save
+      flash[:success] = 'Address was successfully added.'
     end
+    respond_with @address, location: addresses_path
+
+    # respond_to do |format|
+    #   if @address.save
+    #     format.html { redirect_to @address, notice: }
+    #     format.json { render :show, status: :created, location: @address }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @address.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def update
-    respond_to do |format|
-      if @address.update(address_params)
-        format.html { redirect_to @address, notice: 'Address was successfully updated.' }
-        format.json { render :show, status: :ok, location: @address }
-      else
-        format.html { render :edit }
-        format.json { render json: @address.errors, status: :unprocessable_entity }
-      end
+    if @address.update(address_params)
+      flash[:success] = 'Address was successfully updated.'
     end
+    respond_with @address, location: addresses_path
+    # respond_to do |format|
+    #   if @address.update(address_params)
+    #     format.html { redirect_to @address, notice: '' }
+    #     format.json { render :show, status: :ok, location: @address }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @address.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def destroy
     @address.destroy
-    respond_to do |format|
-      format.html { redirect_to addresses_url, notice: 'Address was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:notice] = 'Address was successfully destroyed.'
+    respond_with @address
+    # respond_to do |format|
+    #   format.html { redirect_to addresses_url, notice: '' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private

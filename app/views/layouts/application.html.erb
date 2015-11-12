@@ -9,6 +9,7 @@
 <body>
 <%= render partial: 'layouts/header' %>
 <div class="yield" >
+  <%= render partial: "layouts/flash", locals: { flash: flash } %>
   <%= yield %>
 </div>
 <div id="footer">
