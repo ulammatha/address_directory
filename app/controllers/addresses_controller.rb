@@ -11,14 +11,14 @@ class AddressesController < ApplicationController
   end
 
   def new
-    @address = Address.new
+    @address = current_user.addresses.build
   end
 
   def edit
   end
 
   def create
-    @address = Address.new(address_params)
+    @address = current_user.addresses.build(address_params)
 
     if @address.save
       flash[:success] = 'Address was successfully added.'
@@ -68,6 +68,17 @@ class AddressesController < ApplicationController
     end
 
     def address_params
-      params.require(:address).permit(:first_name, :last_name, :appartment_number, :string, :street, :text, :city, :string, :state, :string, :zip_code, :string, :phone_number, :string, :user_id)
+      params.
+        require(:address).
+        permit(
+          :first_name,
+          :last_name,
+          :appartment_number,
+          :street,
+          :city,
+          :state,
+          :zip_code,
+          :phone_number
+        )
     end
 end
