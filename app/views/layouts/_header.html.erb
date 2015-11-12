@@ -1,0 +1,18 @@
+<nav class="navbar bg-success">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <h2 class="text-muted"> Address Directory
+        <%= link_to(image_tag("images.png", title: "logo"), '/')%>
+        <small>
+          <% if current_user %>
+            <small> Welcome <%= "#{current_user.email}" %></small>&nbsp;
+            <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to 'sign in', new_user_session_path %> |
+            <%= link_to 'sign up', new_user_registration_path %>
+          <% end %>
+        </small>
+      </h2>
+    </div>
+  </div>
+</nav>

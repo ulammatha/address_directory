@@ -1,0 +1,104 @@
+<%= form_for(@address, class: "form-horizontal") do |f| %>
+  <% if @address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
+      <ul>
+      <% @address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :user_id, value: current_user.id%>
+    <div class="form-group">
+      <%= f.label :first_name, for: 'first_name', class: "col-sm-1 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :first_name,
+          class: "form-control",
+          id: "first_name",
+          placeholder:"First Name"
+        %>
+      </div>
+    </div>
+    <br><br><br>
+    <div class="form-group">
+      <%= f.label :last_name, for: 'last_name', class: "col-sm-1 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :last_name,
+          class: "form-control",
+          id: "last_name",
+          placeholder:"Last Name"
+        %>
+      </div>
+    </div>
+    <br><br>
+    <div class="form-group">
+      <%= f.label :apt, for: 'appartment_number', class: "col-sm-1 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :appartment_number,
+          class: "form-control",
+          id: "appartment_number",
+          placeholder:"Apt Number"
+        %>
+      </div>
+    </div>
+    <br><br>
+    <div class="form-group">
+      <%= f.label :street, for: 'street', class: "col-sm-1 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :street,
+          class: "form-control",
+          id: "street",
+          placeholder:"street"
+        %>
+      </div>
+    </div>
+    <br><br>
+    <div class="form-group">
+      <%= f.label :city, for: 'city', class: "col-sm-1 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :city,
+          class: "form-control",
+          id: "city",
+          placeholder:"city"
+        %>
+      </div>
+    </div>
+    <br><br>
+    <div class="form-group">
+      <%= f.label :state, for: 'city', class: "col-sm-1 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :state,
+          class: "form-control",
+          id: "state",
+          placeholder:"state"
+        %>
+      </div>
+    </div>
+    <br><br>
+    <div class="form-group">
+      <%= f.label :zip_code, for: 'city', class: "col-sm-1 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :zip_code,
+          class: "form-control",
+          id: "zip_code",
+          placeholder:"zip_code"
+        %>
+      </div>
+    </div>
+    <br><br>
+    <div class="form-group">
+      <%= f.label :phone, for: 'city', class: "col-sm-1 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :phone_number,
+          class: "form-control",
+          id: "phone_number",
+          placeholder:"Phone Number"
+        %>
+      </div>
+    </div>
+    <br><br>
+    <div class="col-sm-2">
+      <%= f.submit(value=nil, class: 'btn btn-success')%>
+    </div>
+<% end %>
